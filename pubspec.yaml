@@ -1,0 +1,27 @@
+name: gmailclone
+description: Clone of Gmail with Let's Auth
+
+publish_to: 'none'
+
+ersion: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.3
+  provider: ^4.1.1
+  flutter_appavailability: ^0.0.21
+  device_apps: ^1.0.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/
