@@ -40,9 +40,12 @@ class _KeystoneLoginScreenState extends State<KeystoneLoginScreen>
       //TODO: add functionality connecting to Keystone or CA
       var uuid = Uuid();
       String sessionId = uuid.v4();
+      String totalUrl = "https://gmail.letsauth.org/api/login";
       String passInfo = jsonEncode(
         {
-          'url': 'gmail.letsauth.org/$sessionId',
+          "url": totalUrl,
+          "uuid": sessionId,
+          "clientID": "hellothere",
         },
       );
       await FlutterShare.share(
