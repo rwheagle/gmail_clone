@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/google_login_screen.dart';
+import '../screens/google/google_login_screen.dart';
 import '../screens/keystone_login_screen.dart';
 
 //TODO: Add more documentation

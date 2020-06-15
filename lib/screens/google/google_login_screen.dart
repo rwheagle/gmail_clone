@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gmailclone/screens/google_password_screen.dart';
+
+import 'file:///C:/Users/rwhky/AndroidStudioProjects/gmail_clone/lib/screens/google/google_password_screen.dart';
 
 //TODO: Add more documentation
 

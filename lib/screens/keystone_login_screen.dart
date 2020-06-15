@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_appavailability/flutter_appavailability.dart';
+import 'package:flutter_share/flutter_share.dart';
+import 'package:uuid/uuid.dart';
 
 ///
 /// This screen loads while the app connects to Keystone for authorization
@@ -28,14 +31,26 @@ class _KeystoneLoginScreenState extends State<KeystoneLoginScreen>
   void getKeystoneAuthentication() async {
     try {
       //   List<Application> apps = await DeviceApps.getInstalledApplications();
-      bool hasKeystone = await AppAvailability.isAppEnabled(
-          "com.example.lets_auth_ui_attempt");
-      print(hasKeystone);
-      if (hasKeystone) {
-        //Opens App
-        AppAvailability.launchApp("com.example.lets_auth_ui_attempt");
-        //TODO: add functionality connecting to Keystone or CA
-      }
+      // bool hasKeystone = await AppAvailability.isAppEnabled(
+      // "com.example.lets_auth_ui_attempt");
+      // print(hasKeystone);
+      //  if (hasKeystone) {
+      //Opens App
+      //AppAvailability.launchApp("com.example.lets_auth_ui_attempt");
+      //TODO: add functionality connecting to Keystone or CA
+      var uuid = Uuid();
+      String sessionId = uuid.v4();
+      String passInfo = jsonEncode(
+        {
+          'url': 'gmail.letsauth.org/$sessionId',
+        },
+      );
+      await FlutterShare.share(
+        title: passInfo,
+        text: passInfo,
+      );
+      print(passInfo);
+      // }
     } catch (e) {
       print(e);
     }
