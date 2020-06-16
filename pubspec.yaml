@@ -17,12 +17,11 @@ dependencies:
   uuid: ^2.0.4
 
   #to interact with other apps
-  receive_sharing_intent: ^1.4.0+2
-  share: '>=0.6.4+2<2.0.0'
-  flutter_share: ^1.0.2+1
+  #receive_sharing_intent: ^1.4.0+2
+  #share: '>=0.6.4+2<2.0.0'
+  #flutter_share: ^1.0.2+1
   flutter_appavailability: ^0.0.21
-  device_apps: ^1.0.9
-
+  shared_preferences: '>=0.5.7+3<2.0.0'
 
 
 dev_dependencies:

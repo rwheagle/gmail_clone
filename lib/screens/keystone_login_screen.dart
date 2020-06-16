@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
+import 'package:flutter_appavailability/flutter_appavailability.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 ///
@@ -30,30 +31,29 @@ class _KeystoneLoginScreenState extends State<KeystoneLoginScreen>
 
   void getKeystoneAuthentication() async {
     try {
-      //   List<Application> apps = await DeviceApps.getInstalledApplications();
-      // bool hasKeystone = await AppAvailability.isAppEnabled(
-      // "com.example.lets_auth_ui_attempt");
+      bool hasKeystone = await AppAvailability.isAppEnabled(
+          "com.example.lets_auth_ui_attempt");
       // print(hasKeystone);
-      //  if (hasKeystone) {
-      //Opens App
-      //AppAvailability.launchApp("com.example.lets_auth_ui_attempt");
-      //TODO: add functionality connecting to Keystone or CA
-      var uuid = Uuid();
-      String sessionId = uuid.v4();
-      String totalUrl = "https://gmail.letsauth.org/api/login";
-      String passInfo = jsonEncode(
-        {
-          "url": totalUrl,
-          "uuid": sessionId,
-          "clientID": "hellothere",
-        },
-      );
-      await FlutterShare.share(
-        title: passInfo,
-        text: passInfo,
-      );
-      print(passInfo);
-      // }
+      if (hasKeystone) {
+        //
+        //TODO: add functionality connecting to Keystone or CA
+        var uuid = Uuid();
+        String sessionId = uuid.v4();
+        String totalUrl = "https://gmail.letsauth.org/api/login";
+        String passInfo = jsonEncode(
+          {
+            "url": totalUrl,
+            "uuid": sessionId,
+            "clientID": "hellothere",
+          },
+        );
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('sentJSON', passInfo);
+        AppAvailability.launchApp("com.example.lets_auth_ui_attempt");
+        print(passInfo);
+      } else {
+        print("KeyStone Not Installed");
+      }
     } catch (e) {
       print(e);
     }
